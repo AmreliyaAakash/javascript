@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto gmail Maker</title>
+  </head>
+  <body>
+    <style>
+        .form-control {
+            width: 50%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 5px 5px 5px #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <input
+    class="form-control"
+      type="text"
+      id="username"
+      placeholder="Enter your name without space"
+    />
+    <button onclick="generate()">Generate</button>
+
+    <script>
+      function generate() {
+        let userinput = document.getElementById("username").value;
+
+
+        if (userinput.trim() === "" || userinput !== userinput.toLowerCase()) {
+          alert(
+            "Invalid input! Please enter your name without spaces and only in lowercase."
+          );
+          return 
+        } else {
+          for (let i = 0; i < 4; i++) {
+            let username =
+              userinput + (Math.random() * 99).toFixed(0) + "@gmail.com";
+            document.write(username + "<br>");
+          }
+        }
+        document.write("choose any one of the above gmail id");
+      }
+    </script>
+  </body>
+</html>

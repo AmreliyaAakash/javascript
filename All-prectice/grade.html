@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- java script -->
+    <script>
+        let marks = prompt("Enter your marks");
+        let grade;
+        if(marks >=90 && marks <= 100){
+            grade = "A"
+            document.write("Your grade is ",grade);
+        }
+        else if(marks >=70 && marks <= 89){
+            grade = "B"
+            document.write("Your grade is ",grade);
+        }
+        else if(marks >=60 && marks <= 69){
+            grade = "C"
+            document.write("Your grade is ",grade);
+        }
+        else if(marks >=50 && marks <= 59){
+            grade = "D"
+            document.write("Your grade is ",grade);
+        }
+        else if(marks >=0 && marks <= 49){
+            document.write("You are fail");
+        }
+        </script>
+</body>
+</html>
