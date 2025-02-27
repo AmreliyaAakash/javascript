@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        let square = document.getElementById("square");
+        function squareotput(){
+            let square = document.getElementById("square");
+            let num = square.value;
+            let result = num * num;
+            alert("Square  is: " + result);
+
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="square" placeholder="Enter the number">
+    <button onclick="squareotput()">Square</button>
+
+</body>
+</html>

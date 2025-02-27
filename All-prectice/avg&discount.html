@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        
+    </section>
+    <script>
+        // avregae of marks
+    let mark = [35, 45, 55, 65, 75, 85, 95];
+    let sum = 0;
+    console.log(mark);
+
+    for (let value of mark) {
+        sum += value;
+    }
+    let avg = sum / mark.length;
+    console.log("avrage mark " + avg);
+
+    // discount of items
+    let itemprice = [150,200,400,270,320,500,1000];
+
+    for(let i = 0; i < itemprice.length; i++) {
+        let discount = itemprice[i]/10;
+        let price = itemprice[i] - discount;
+        console.log(price);
+    }
+    </script>
+</body>
+</html>

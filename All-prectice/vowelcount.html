@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function countvowel(){
+            let str = document.getElementById("str").value;
+            let count = 0;
+            for(let i = 0; i < str.length; i++){
+                if(str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u'){
+                    count++;
+                }
+            }
+            alert("Number of vowels in the string is: " + count);   
+
+
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="str" placeholder="Enter a string">
+    <button onclick="countvowel()">Count Vowels</button>
+</body>
+</html>
