@@ -1,4 +1,6 @@
 let addBtn = document.querySelector("#add-btn");
+let inputField = document.querySelector("#input");
+
 
 
 addBtn.addEventListener("click", addchapter);
@@ -42,4 +44,9 @@ function addchapter(e) {
 
     }
     // Ensure the edit button and delete button are re-added after editing
-    
+    inputField.addEventListener("input", function () {
+        addBtn.disabled = inputField.value.trim() === "";
+    });
+
+    // Initially disable the button if the input is empty
+    addBtn.disabled = inputField.value.trim() === "";
