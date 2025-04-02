@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Search and Sort</title>
+    <style>
+    
+    .user {
+      list-style: none;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: cyan;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+    
+    }
+
+    .col-3 {
+      width: 25%;
+      box-sizing: border-box;
+      padding-right: 20px;  
+    }
+
+    #place-users {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    select {
+      padding: 5px;
+      margin-right: 10px;
+      background-color: cyan;
+      padding: 15px;
+      border-radius: 8px;
+
+    }
+    button {
+      padding: 5px;
+      background-color: cyan;
+      border-radius: 10px;
+      padding: 15px;
+    }
+    input {
+      padding: 5px;
+      margin-right: 10px;
+      background-color: #fffcfc;
+      border-radius: 10px;
+      border: 1px solid #110f0f;
+      width: 200px;
+      padding: 15px;
+    }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input
+        type="text"
+        id="search"
+        placeholder="Search by ID, Name, or Rating"
+      />
+      <select>
+        <option value="0">Sort by</option>
+        <option value="1">Name</option>
+        <option value="2">Rating</option>
+      </select>
+      <button type="submit">Search</button>
+      <button type="button" id="reset">Reset</button>
+    </form>
+
+    <div id="place-users"></div>
+
+    <script>
+      let users = [
+        { id: 1, name: "Inception", rating: 9 },
+        { id: 2, name: "Interstellar", rating: 9 },
+        { id: 3, name: "The Dark Knight", rating: 9 },
+        { id: 4, name: "Memento", rating: 8 },
+        { id: 5, name: "The Prestige", rating: 8 },
+        { id: 6, name: "Dunkirk", rating: 7 },
+        { id: 7, name: "Tenet", rating: 9 },
+        { id: 8, name: "Batman Begins", rating: 9 },
+        { id: 9, name: "The Dark Knight Rises", rating: 9 },
+        { id: 10, name: "Insomnia", rating: 8 },
+        { id: 11, name: "Following", rating: 9 },
+        { id: 12, name: "The Prestige", rating: 9 },
+        { id: 13, name: "Doodlebug", rating: 9 },
+      ];
+
+      const usersDiv = document.getElementById("place-users");
+
+      const renderUsers = (users) => {
+        usersDiv.innerHTML = users
+          .map(
+            (user) => `
+                        <div class="col-3">
+                            <div class = "content">
+                            <ul class="user">
+                                <li>ID : ${user.id}</li>
+                                <li>Name : ${user.name}</li>
+                                <li>Rating : ${user.rating}</li>
+                            </ul>
+                            </div>
+                        </div>`
+          )
+          .join("");
+      };
+
+      renderUsers(users);
+
+      let select = document.querySelector("form select");
+      let form = document.querySelector("form");
+      let search = document.querySelector("#search");
+      let resetButton = document.getElementById("reset");
+
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const searchValue = search.value.trim().toLowerCase();
+        let usersFilter = users.filter(
+          (user) =>
+            String(user.id).startsWith(searchValue) ||
+            user.name.toLowerCase().includes(searchValue) ||
+            String(user.rating).startsWith(searchValue)
+        );
+
+        if (select.value == 1) {
+          usersFilter.sort((a, b) =>
+            a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+          );
+        } else if (select.value == 2) {
+          usersFilter.sort((a, b) => a.rating - b.rating);
+        }
+
+        renderUsers(usersFilter);
+      };
+
+      resetButton.onclick = () => {
+        search.value = "";
+        select.value = "0";
+        renderUsers(users);
+      };
+    </script>
+  </body>
+</html>
