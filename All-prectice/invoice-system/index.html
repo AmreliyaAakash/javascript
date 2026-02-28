@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProInvoice - Premium Billing System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="logo-icon"><i class="ri-receipt-line"></i></div>
+                <h1>Pro<span class="highlight">Invoice</span></h1>
+            </div>
+            <div class="header-actions">
+                <button id="resetBtn" class="btn btn-outline"><i class="ri-refresh-line"></i> New Invoice</button>
+            </div>
+        </header>
+
+        <div class="invoice-grid">
+            <section class="input-section glass-panel">
+                <div class="section-header">
+                    <h2><i class="ri-add-circle-line"></i> Add Item Details</h2>
+                    <p>Enter the product or service information below.</p>
+                </div>
+
+                <form id="itemForm">
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <div class="input-wrapper">
+                            <i class="ri-shopping-cart-line"></i>
+                            <input type="text" id="itemName" placeholder="e.g. Web Design Services" required
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-small">
+                            <label for="itemQty">Quantity</label>
+                            <div class="input-wrapper">
+                                <i class="ri-apps-2-line"></i>
+                                <input type="number" id="itemQty" placeholder="1" min="0.01" step="0.01" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-main">
+                            <label for="itemPrice">Price per Unit (₹)</label>
+                            <div class="input-wrapper">
+                                <i class="ri-money-rupee-circle-line"></i>
+                                <input type="number" id="itemPrice" placeholder="0.00" min="0.01" step="0.01" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemDiscount">Discount per Item (%) <span>(Optional)</span></label>
+                        <div class="input-wrapper">
+                            <i class="ri-percent-line"></i>
+                            <input type="number" id="itemDiscount" placeholder="0" min="0" max="100" step="0.1">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-submit" id="addItemBtn">
+                            <span>Add to Invoice</span>
+                            <i class="ri-arrow-right-line"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="tax-config">
+                    <div class="form-group">
+                        <label for="globalTax">Global Tax Rate (%)</label>
+                        <div class="input-wrapper">
+                            <i class="ri-building-4-line"></i>
+                            <input type="number" id="globalTax" value="5.00" min="0" max="100" step="0.1">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="invoice-preview glass-panel">
+                <div class="invoice-wrapper" id="printableArea">
+                    <div class="invoice-header">
+                        <div class="invoice-branding">
+                            <div class="invoice-logo"><i class="ri-receipt-line"></i></div>
+                            <div>
+                                <h2 class="company-name">ProInvoice</h2>
+                                <p class="invoice-date" id="displayDate">Date: --</p>
+                            </div>
+                        </div>
+                        <div class="invoice-status badge-unpaid">INVOICE</div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-item">Item Description</th>
+                                    <th class="col-qty">Qty</th>
+                                    <th class="col-price">Price</th>
+                                    <th class="col-disc">Disc.</th>
+                                    <th class="col-total">Total</th>
+                                    <th class="col-actions"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoiceItemsBody">
+                                <tr class="empty-state" id="emptyStateRow">
+                                    <td colspan="6">
+                                        <div class="empty-state-content">
+                                            <i class="ri-file-list-3-line"></i>
+                                            <p>No items added yet</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="invoice-summary">
+                        <div class="summary-row">
+                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-value" id="subtotalDisplay">₹0.00</span>
+                        </div>
+                        <div class="summary-row text-success">
+                            <span class="summary-label">Total Discount</span>
+                            <span class="summary-value" id="discountDisplay">-₹0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Tax (<span id="taxRateDisplay">5%</span>)</span>
+                            <span class="summary-value" id="taxDisplay">₹0.00</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row grand-total">
+                            <span class="summary-label">Grand Total</span>
+                            <span class="summary-value highlight-value" id="grandTotalDisplay">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
